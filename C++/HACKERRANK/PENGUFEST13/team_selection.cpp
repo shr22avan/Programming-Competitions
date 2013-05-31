@@ -1,0 +1,40 @@
+#include<iostream>
+#include<cstdio>
+#include<algorithm>
+#include<vector>
+#define MOD 1000000007
+using namespace std;
+struct object
+{
+	int s1,s2;
+};
+vector<object> a;
+bool myfunction (object i,object j) 
+{
+	return (i.s1<j.s1);
+}
+bool myfunction1 (object i,object j) 
+{
+	if(i.s1==j.s1)
+		return (i.s2<j.s2);
+}
+int main()
+{
+	int t,n,k;
+	object temp;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d%d",&n,&k);
+		for(int i=0,p,q;i<n;i++)
+		{
+			scanf("%d%d",&p,&q);
+			temp.s1=p;
+			temp.s2=q;
+			a.push_back(temp);
+		}
+		sort(a,a+n,myfunction);
+		sort(a,a+n,myfunction1);
+	}
+	return 0;
+}

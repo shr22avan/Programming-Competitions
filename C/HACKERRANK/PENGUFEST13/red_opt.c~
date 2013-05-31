@@ -1,0 +1,46 @@
+#include<stdio.h>
+#define ull unsigned long long int
+ull dp1[10000][10000],dp2[10000][10000];
+ull max(int a,int b)
+{
+	if(a>b)
+		return a;
+	else
+		return b;
+}
+int main()
+{
+	int i,j,k,l,n,a[1000000];
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	for(i=0;i<n;i++)
+	{
+		dp1[i][i]=a[i];
+		dp2[i][i]=0;
+	}
+	for(j=1;j<n-1;j++)
+	{
+		for(i=0;i<=n-j-1;i++)
+		{
+			dp1[i][i+j]=max(dp1[i][i],dp1[i+1][i+j]);
+			dp2[i][i+j]=dp2[i][i]+dp2[i+1][i+j]+max(dp1[i][i],dp1[i+1][i+j]);
+			for(k=i+1;k<i+j;k++)
+			{
+				if(dp2[i][i+j]>dp2[i][k]+dp2[k+1][i+j]+max(dp1[i][k],dp1[k+1][i+j]))
+				{
+					dp1[i][i+j]=max(dp1[i][k],dp1[k+1][i+j]);
+					dp2[i][i+j]=dp2[i][k]+dp2[k+1][i+j]+max(dp1[i][k],dp1[k+1][i+j]);
+				}
+			}
+		}
+	}
+	for(i=0;i<3;i++)
+	{
+		for(j=0;j<3;j++)
+			printf("%d ",dp2[i][j]);
+		printf("%s","\n");
+	}
+	printf("%lld\n",dp2[0][n-1]);
+	return 0;
+}

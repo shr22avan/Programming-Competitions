@@ -1,0 +1,7 @@
+#include<stdio.h>
+#define ull unsigned long long int
+int main()
+{
+	return 0;
+}
+
