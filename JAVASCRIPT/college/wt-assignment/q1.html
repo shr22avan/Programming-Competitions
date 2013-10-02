@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Birthday Calculator</title>
+		<script>
+			function datediff(form){
+				var day = form.day.value;
+				var month = form.month.value;
+				var year = form.year.value;
+				
+				var birthDate = new Date(month+","+day+","+year);
+				var currDate  = new Date();
+				var currYear  = parseInt(currDate.getFullYear());
+				
+				var age = currYear - parseInt(year);
+				var daysLeft;
+				
+				nextBDay = new Date(month+","+day+","+currDate.getYear());
+				if(nextBDay.getTime() < currDate.getTime())
+					nextBDay.setYear(currYear+1);
+
+				daysLeft = parseInt((nextBDay.getTime()-currDate.getTime())/(24*3600*1000))+1;
+				
+				alert("Your age is "+age);
+				alert("Days until next birthday: "+daysLeft%365);
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Enter your Date of Birth</h1>
+		<form>
+			Enter the day: <input type='text' name='day' value='29'/><br/>
+			Enter the month: <input type='text' name='month' value='5'/><br/>
+			Enter the year: <input type='text' name='year' value='1993'/><br/>
+			<button type='button' onclick="datediff(this.parentNode)">OK</button>
+		</form>
+	</body>

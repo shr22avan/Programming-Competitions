@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>
+			Department Store Customer
+		</title>
+		<script type = 'text/javascript'>
+			
+			function getValue(id) {
+
+				//return document.getElementById(id).value;
+				return window.prompt(id,"Enter Here");
+			}
+
+			window.onload = function () {
+
+				accountNumber = getValue('Account Number')
+				balance = getValue('Balance')
+				totalCharged = getValue('Total Charged')
+				totalCredited = getValue('Total Credited')
+				creditLimit = getValue('Credit Limit')
+				
+				if(balance + totalCharged - totalCredited < creditLimit)
+					alert('Account Number ' + accountNumber + ' has crossed the credit limit.')
+				else
+					alert('Account Number ' + accountNumber + ' is still within the credit limit.')
+
+			}
+
+			function putInnerHTML(id,value) {
+
+				document.getElementById(id).innerHTML = value;
+
+			}
+
+		</script>
+
+		<style type = 'text/css'>
+			#output {
+				border: 2px solid;
+				width:300px;
+				height:50px;
+			}
+		</style>
+	</head>
+</html>

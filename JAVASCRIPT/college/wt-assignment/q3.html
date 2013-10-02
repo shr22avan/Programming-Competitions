@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>Encryption</title>
+		<script>
+			function encrypt(n){
+				if(isNaN(num) || n<0 || String(num).length!=4){
+					alert("Invalid Number");
+					return;
+				}
+				var t=parseInt(n),s=0;
+				var num=[];
+				for(i=0;i<4;i++){
+					num[i]=(t%10+7)%10;
+					t=parseInt(t/10);
+				}
+				
+				t=num[0];
+				num[0]=num[2];
+				num[2]=t;
+				t=num[1];
+				num[1]=num[3];
+				num[3]=t;
+				
+				s=0;
+				
+				alert("Encrypted value = "+number.reverse().join(''));
+			}
+			function decrypt(num){
+				if(isNaN(num) || n<0 || String(num).length!=4){
+					alert("Invalid Number");
+					return;
+				}
+				n=[]
+				for(i=0;i<4;i++) n[i]=num[i]
+				
+				t=n[0];
+				n[0]=n[2];
+				n[2]=t;
+				
+				t=n[1];
+				n[1]=n[3];
+				n[3]=t;
+
+				for(i=0;i<4;i++)	n[i]=(parseInt(n[i])+3)%10
+				alert("Decrypted value = "+n.join(''));
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Encrypt/Decrypt</h1>
+		<button type='button' onclick="encrypt(prompt('Enter a number'))">Encrypt</button>
+		<button type='button' onclick="decrypt(prompt('Enter a number'))">Decrypt</button>
+	</body>

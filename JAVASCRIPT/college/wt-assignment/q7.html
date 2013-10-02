@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<title>15 Puzzle Solver</title>
+		<style>
+			td{
+				width:50px;
+				height:50px;
+				vertical-align:middle;
+				text-align:center;
+				cursor:pointer;
+			}
+		</style>
+		<script>
+			var moveDiv;
+			var moves;
+			function $(x){
+				return document.getElementById(x);
+			}
+			function start(){
+				moveDiv = $("moves");
+				moves = 0;
+				tds = document.getElementsByTagName("td")
+				for(i=0;i<tds.length;i++)
+					tds[i].addEventListener("click",function(x){slide(x.target);})
+			}
+			function chk(x,y){
+				return x>=0 && y>=0 && x<4 && y<4;
+			}
+			function verify(){
+				for(i=0;i<15;i++){
+					if($(i).innerText!=i+1)
+						return;
+				}
+				moves = 0;
+				if(confirm("Puzzle Solved! Do you want to continue?")){
+					scramble();
+				}
+				moveDiv.innerText = "Moves Made: 0";
+			}
+			function scramble(){
+				var curr=15;
+				var px=[1,-1,0,0],py=[0,0,1,-1];
+				for(var i=0;i<100;i++){
+					nxtIdx = Math.floor(Math.random()*4);
+					if(chk(curr/4+px[nxtIdx],curr%4+py[nxtIdx])){
+						nxt = (parseInt(curr/4)+px[nxtIdx])*4+(curr%4)+py[nxtIdx];
+						$(curr).innerText = $(nxt).innerText;
+						$(nxt).innerText = "";
+						curr=nxt;
+					}
+				}
+			}
+			function slide(node){
+				curr = node.id
+				row = parseInt(curr/4)
+				col = curr%4
+				px=[1,-1,0,0]
+				py=[0,0,1,-1]
+				nxt = NaN;
+				for(var i=0;i<4;i++){
+					if(chk(row+px[i],col+py[i])){
+						nxt = (row+px[i])*4+col+py[i];
+						var x=$(nxt);
+						if(x.innerText==""){
+							x.innerText=node.innerText
+							node.innerText="";
+							moveDiv.innerText = "Moves Made: "+ (++moves);
+							break;
+						}
+					}
+				}
+				verify();
+				
+			}
+		</script>
+	</head>
+	<body onload='start()'>
+		<h1>15 Puzzle Solver</h1>
+		<table border=1>
+			<tr>
+				<td id='0'>1</td>
+				<td id='1'>2</td>
+				<td id='2'>3</td>
+				<td id='3'>4</td>
+			</tr>
+			<tr>
+				<td id='4'>5</td>
+				<td id='5'>6</td>
+				<td id='6'>7</td>
+				<td id='7'>8</td>
+			</tr>
+			<tr>
+				<td id='8'>9</td>
+				<td id='9'>10</td>
+				<td id='10'>11</td>
+				<td id='11'>12</td>
+			</tr>
+			<tr>
+				<td id='12'>13</td>
+				<td id='13'>14</td>
+				<td id='14'></td>
+				<td id='15'>15</td>
+			</tr>
+		</table>
+		<br/>
+		<div id='moves'></div>
+	</body>

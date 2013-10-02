@@ -29,8 +29,7 @@ int main() {
 		getint(n);
 		getint(m);
 		getint(k);
-		if(n==1 && m==1) val = 0;
-		else if(n==1 || m==1 || k==1) val = k;
+		if(n==1 || m==1 || k==1) val = k;
 		else {
 			mini =  min(dp[n-2][m-1], dp[n-1][m-2]); 
 			maxi =  max(dp[n-2][m-1], dp[n-1][m-2]); 

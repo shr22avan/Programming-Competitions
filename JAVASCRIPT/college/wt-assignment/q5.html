@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Prime Calculator</title>
+		<script>
+			function isPrime(n){
+				if(n<2) return 0;
+				for(var i=2;i<=n/2;i++)
+					if(n%i==0)
+						return 0;
+				return 1;
+			}
+			function isPrimeEfficient(n){
+				if(n<2) return 0;
+				s=Math.sqrt(n)
+				for(var i=2;i<=s;i++)
+					if(n%i==0)
+						return 0;
+				return 1;
+			}
+			function findPrime(form){
+				textarea = form.primes;
+				res = document.getElementById("results");
+				textarea.value="";
+				
+				var now = new Date().getTime()
+				for(var i=1;i<=100000;i++)
+					if(isPrime(i))
+						textarea.value = textarea.value+i+'\n';
+				var elapsed = (new Date().getTime() - now);
+				res.innerHTML = "Original Algorithm - Time taken = "+elapsed+"ms";
+				
+				textarea.value="";
+				now = new Date().getTime();
+				for(var i=1;i<=100000;i++)
+					if(isPrimeEfficient(i))
+						textarea.value = textarea.value+i+'\n';
+				elapsed = (new Date().getTime() - now);
+				res.innerHTML += "<br/> New Algorithm - Time taken = "+elapsed+"ms";
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Primes Calculator</h1>
+		<form>
+			<button type='button' onclick="findPrime(this.parentNode)">Find Primes</button><br/>
+			<textarea name='primes' rows=15></textarea>
+		</form>
+		<div id="results">
+		</div>
+	</body>

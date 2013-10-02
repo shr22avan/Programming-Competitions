@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<title>Area Code Finder</title>
+		<script>
+			function getPhoneNumber(s){
+				return s.split(')')[1];
+			}
+			function findCodes(form){
+				phone = getPhoneNumber(form.code.value).split('-');
+				form.area.value = phone[0]
+				form.phone.value= phone.join('');
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Area Code Evaluator</h1>
+		<form>
+			Phone Number: <input type='text' name='code'/><br/>
+			4-digit Area Code:<input type='text' name='area'/><br/>
+			7-digit Phone Number:<input type='text' name='phone'/><br/>
+			<button type='button' onclick='findCodes(this.parentNode)'>Find</button>
+		</form>
+		<div id="results">
+		</div>
+	</body>

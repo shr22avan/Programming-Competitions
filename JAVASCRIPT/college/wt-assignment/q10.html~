@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<title>
+			Linear Search
+		</title>
+		<script type = 'text/javascript'>
+			
+			function getValue(id) {
+				return document.getElementById(id).value;
+			}
+
+			function putInnerHTML(id,value) {
+				document.getElementById(id).innerHTML = value;
+			}
+			function linearSearch() {
+				numbersList = getValue('numbers-list')
+				searchKey = getValue('search-key')
+				numbers = numbersList.split(" ")
+				found = false;
+				for(i = 0; i < numbers.length; i++) {
+					if(parseInt(searchKey) == parseInt(numbers[i]))
+						found = true
+				}
+				if(found)
+					putInnerHTML('output', 'FOUND')
+				else
+					putInnerHTML('output', 'NOT FOUND')
+			}
+
+		</script>
+
+		<style type = 'text/css'>
+			#output {
+				border: 2px solid;
+				width: 825px;
+			}
+		</style>
+	</head>
+	<body>
+		<h3>Linear Search:</h1>
+		<table>
+			<tr>
+				<td>Enter list of numbers:</td>
+				<td><input type = 'text' id = 'numbers-list'/></td>
+			</tr>
+			<tr>
+				<td>Enter Search key:</td>
+				<td><input type = 'text' id = 'search-key' /></td>
+			</tr>
+			<tr>
+				<td><input type = 'button' value = 'Search' onclick = 'linearSearch()' /></td>
+			</tr>
+		</table>
+		<h3>Output:</h3>
+		<div id = 'output'></div>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>
+			Colourful Text
+		</title>
+		<script type = 'text/javascript'>
+			
+			function getInnerHTML(id) {
+				return document.getElementById(id).innerHTML;
+			}
+
+			function putInnerHTML(id,value) {
+
+				document.getElementById(id).innerHTML = value;
+
+			}
+
+			var coloursArray = ['Red', 'Green', 'Blue']
+			coloursArray[3] = 'Purple'
+			coloursArray[4] = 'Black'
+			window.onload=function(){
+				
+				putInnerHTML('output', '<span style=\'color:' + coloursArray[0]	+ '\'>' + coloursArray[0] + '</span><br>')
+				for (i=1;i<5;i++) {
+					putInnerHTML('output', getInnerHTML('output') + '<span style=\'color:' + coloursArray[i] + '\'>' + coloursArray[i] + '</span><br>')
+				}
+			}
+
+		</script>
+
+		<style type = 'text/css'>
+			#output {
+				border: 2px solid;
+				width:300px;
+				height:100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='output'></div>
+	</body>
+</html>

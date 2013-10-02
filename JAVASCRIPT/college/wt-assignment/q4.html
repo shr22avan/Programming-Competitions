@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>
+			Parking Garage Customers
+		</title>
+		<script type = 'text/javascript'>
+			runningTotal = 0
+			function getValue(id) {
+
+				return document.getElementById(id).value;
+
+			}
+
+			function Calculate_Charges() {
+
+				hoursParked = parseInt(getValue('parking-hours'))
+				charges = 2
+				if(hoursParked > 3) {
+					hoursParked -= 3
+					charges += hoursParked*0.5
+				}
+				runningTotal += charges;
+				putInnerHTML('output','Charge for current customer:' + charges + '<br> Running Total:' + runningTotal)
+			}
+
+			function putInnerHTML(id,value) {
+
+				document.getElementById(id).innerHTML = value;
+
+			}
+
+		</script>
+
+		<style type = 'text/css'>
+			#output {
+				border: 2px solid;
+				width:300px;
+				height:50px;
+			}
+		</style>
+	</head>
+	<body>
+		<form>
+			<table>
+			<tr>
+				<td>Number of Hours Parked:</td><td> <input type = 'text' id = 'parking-hours' /></td>
+			</tr>
+			<tr>
+				<td><input type = 'button' value = 'Calculate' onclick = "Calculate_Charges()" /> </td>
+			</tr>
+			<tr>
+				<td><div id='output'>0</div></td>
+			</tr>
+		</form>
+	</body>
+</html>
